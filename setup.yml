@@ -1,0 +1,15 @@
+# USAGE:
+#  ansible-playbook -i inventory setup.yml --ask-become-pass
+---
+- hosts: machine
+  gather_facts: false
+  roles:
+  # 3-account
+  - role: roles/39-account
+
+- hosts: kodi
+  gather_facts: false
+  roles:
+  # 4-ubuntu-xrdp
+  - role: roles/49-user-xsession
+

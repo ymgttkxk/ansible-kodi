@@ -1,0 +1,48 @@
+---
+- name: install base packages
+  apt:
+    name:
+    - kodi
+    state: latest
+    update_cache: yes
+  become: yes
+
+- name: add group kodi
+  group:
+    name: kodi
+    state: present
+    system: true
+  become: true
+
+- name: add user kodi
+  user:
+    name: kodi
+    group: kodi
+    system: true
+  become: true
+
+- name: copy kodi.service
+  copy:
+    src: kodi.service
+    dest: "/etc/systemd/system/kodi@.service"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+
+- name: copy kodi.socket
+  copy:
+    src: kodi.socket
+    dest: "/etc/systemd/system/kodi@.socket"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+
+- name: kodi service
+  systemd:
+    state: restarted
+    name: kodi@kodi.socket
+    enabled: yes
+  become: true
+

@@ -1,0 +1,15 @@
+# USAGE:
+#  ansible-playbook -i inventory install.yml --ask-become-pass
+---
+- hosts: kodi
+  gather_facts: false
+  roles:
+  # 2-enviroment
+  - role: roles/21-enviroment
+  - role: roles/22-password
+  - role: roles/23-sshd
+  # 4-ubuntu-xrdp
+  - role: roles/41-ubuntu-desktop
+  - role: roles/42-xrdp
+  # kodi
+  - role: roles/kodi

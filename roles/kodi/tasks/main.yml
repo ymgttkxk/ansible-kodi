@@ -1,0 +1,7 @@
+---
+- name: add storage for kodi
+  include_tasks: storage-lxd.yml
+
+- name: install UMS packages
+  include_tasks: install.yml
+

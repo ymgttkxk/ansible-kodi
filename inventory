@@ -1,0 +1,48 @@
+# not use '-' in variable name
+# not use '_' in container name
+
+all:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+# kodi account
+    group:
+      name: kodi
+      gid: 997
+      avail: o
+    user:
+      name: kodi
+      uid: 997
+      main_group: kodi
+      sub_groups: 
+      shell: /bin/bash
+      mail: none
+      avail: o
+    control: adm2104
+    control_ipv4: 192.168.0.254
+    control_user: ubuntu
+# for control
+    ansible_user: ubuntu
+
+    passwd-auth: yes
+    ntphosts: ntp.nict.jp
+    locate: ja_JP.UTF-8
+    lang: ja_JP.UTF-8
+    language: ja_JP:ja
+    timezone: Asia/Tokyo
+
+    secure: 0
+##### port mapping for sub-network machine
+### proxy port of ssh 22
+#   ssh_port: 62202
+### proxy port of rdp 3389
+#   rdp_port: 63302
+
+machine:
+  hosts:
+    kodi:
+      ansible_host: 192.168.0.252
+      ansible_user: ubuntu
+    adm2104:
+      ansible_host: 192.168.0.254
+      ansible_user: ubuntu
+

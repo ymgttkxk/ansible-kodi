@@ -1,0 +1,13 @@
+[Unit]
+Conflicts=kodi@%i.service
+
+[Socket]
+# listen for WOL packets
+#ListenDatagram=9
+
+# change this to Kodi's http control port
+ListenStream=8080
+
+[Install]
+WantedBy=sockets.target
+
